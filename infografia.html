@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuro en el Microscopio: Investigación Educativa en Microbiología</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind: bg-slate-50 */
+            color: #334155; /* Tailwind: text-slate-700 */
+            line-height: 1.6;
+        }
+        /* Estilos base para las secciones de scrollytelling */
+        .scrolly-section {
+            min-height: 100vh; /* Cada sección ocupa al menos la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 1rem;
+            opacity: 0; /* Inicialmente oculto */
+            transform: translateY(20px); /* Ligeramente desplazado hacia abajo */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            text-align: center;
+        }
+        /* Clase 'active' para secciones visibles */
+        .scrolly-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos específicos para la portada */
+        #portada {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6); /* Tailwind: bg-blue-500 to blue-600 */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        #portada .bacteria-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 1s ease-out;
+            opacity: 0.8;
+            max-width: 80%;
+            height: auto;
+            border-radius: 9999px; /* Tailwind: rounded-full */
+        }
+        #portada.active .bacteria-img {
+            transform: translate(-50%, -50%) scale(1.1); /* Ligeramente más grande al activarse */
+        }
+
+        /* Estilos para las tarjetas de investigación */
+        .research-card {
+            background-color: white;
+            border-radius: 1rem; /* Tailwind: rounded-xl */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Tailwind: shadow-md */
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .research-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos para la comparativa gráfica */
+        .bar-chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 200px;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 2rem;
+            border-bottom: 2px solid #cbd5e1; /* Tailwind: border-slate-300 */
+            padding-bottom: 0.5rem;
+        }
+        .bar {
+            width: 18%;
+            background-color: #60a5fa; /* Tailwind: bg-blue-400 */
+            border-radius: 0.5rem 0.5rem 0 0; /* Tailwind: rounded-t-lg */
+            transition: height 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem; /* Tailwind: text-sm */
+            position: relative;
+        }
+        .bar span {
+            position: absolute;
+            top: -1.5rem;
+            color: #334155;
+            font-weight: 400;
+        }
+        .bar-label {
+            margin-top: 0.5rem;
+            font-size: 0.875rem; /* Tailwind: text-sm */
+            color: #475569; /* Tailwind: text-slate-600 */
+        }
+
+        /* Estilos para la cita animada */
+        .animated-quote {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .animated-quote.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div id="scrolly-container" class="max-w-4xl mx-auto">
+
+        <section id="portada" class="scrolly-section relative">
+            <img src="images/imagen1.jpg" alt="Célula bacteriana fusionada con elementos digitales" class="bacteria-img">
+            <div class="relative z-10 p-4 rounded-xl bg-black bg-opacity-20">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-lg">Futuro en el Microscopio</h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-8">Investigación Educativa en Microbiología</h2>
+                <p class="text-lg md:text-xl font-light mb-8">Análisis de 5 estudios clave sobre enseñanza de la microbiología en la universidad</p>
+                <div class="animate-bounce text-xl md:text-2xl mt-12">
+                    <p>Desliza para explorar <span class="ml-2">&#8595;</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="introduccion" class="scrolly-section bg-white shadow-lg rounded-xl mx-4 my-8 p-8">
+            <h2 class="text-4xl font-bold mb-6 text-blue-600">Introducción</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl">
+                La microbiología, como ciencia base en salud y biotecnología, enfrenta el reto de ser enseñada de forma significativa en entornos digitales e híbridos.
+            </p>
+            <img src="images/imagen2.png" alt="Estudiantes con microscopios físicos y de realidad virtual" class="w-full md:w-3/4 lg:w-1/2 rounded-xl shadow-md mb-8">
+            <blockquote class="text-2xl md:text-3xl font-semibold italic text-slate-800 border-l-4 border-blue-500 pl-4 py-2 animated-quote">
+                "Aprender microbiología hoy es aprender a pensar científicamente sobre la vida invisible."
+            </blockquote>
+        </section>
+
+        <section id="investigaciones" class="scrolly-section bg-slate-50">
+            <h2 class="text-4xl font-bold mb-8 text-blue-600">Investigaciones Seleccionadas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
+                <div class="research-card" data-index="0">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-2">From Artifacts to Outcomes (2023)</h3>
+                    <p><strong>Enfoque:</strong> Cuantitativo. Comparación entre VR, escritorio y diapositivas. Pruebas, encuestas y eye-tracking.</p>
+                    <p><strong>Temática principal:</strong> Educación inmersiva.</p>
+                    <p><strong>Temáticas secundarias:</strong> Evaluación objetiva, atención visual.</p>
+                    <a href="https://doi.org/10.1145/3544548.3580913" target="_blank" class="text-blue-500 hover:underline">DOI: 10.1145/3544548.3580913</a>
+                </div>
+                <div class="research-card" data-index="1">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-2">Optimización del aprendizaje con TIC (2023)</h3>
+                    <p><strong>Enfoque:</strong> Cuantitativo. Encuestas Likert sobre percepción del uso de TIC.</p>
+                    <p><strong>Temática principal:</strong> TIC en educación.</p>
+                    <p><strong>Temáticas secundarias:</strong> Motivación, autoaprendizaje.</p>
+                    <a href="https://doi.org/10.15517/revedu.v48i2.58294" target="_blank" class="text-blue-500 hover:underline">DOI: 10.15517/revedu.v48i2.58294</a>
+                </div>
+                <div class="research-card" data-index="2">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-2">Estrategias de Enseñanza Activa (2023)</h3>
+                    <p><strong>Enfoque:</strong> Cualitativo. Investigación-acción. Aplicación de metodologías activas.</p>
+                    <p><strong>Temática principal:</strong> Estrategias didácticas activas.</p>
+                    <p><strong>Temáticas secundarias:</strong> Participación, comprensión.</p>
+                    <a href="https://doi.org/10.37811/cl_rcm.v8i5.14235" target="_blank" class="text-blue-500 hover:underline">DOI: 10.37811/cl_rcm.v8i5.14235</a>
+                </div>
+                <div class="research-card" data-index="3">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-2">EVA para microbiología de alimentos (2022)</h3>
+                    <p><strong>Enfoque:</strong> Mixto. Diseño de entorno en Google Classroom. Encuestas + validación.</p>
+                    <p><strong>Temática principal:</strong> Entornos virtuales.</p>
+                    <p><strong>Temáticas secundarias:</strong> Contenido digital, motivación.</p>
+                    <a href="https://doi.org/10.18779/csye.v8i2.886" target="_blank" class="text-blue-500 hover:underline">DOI: 10.18779/csye.v8i2.886</a>
+                </div>
+                <div class="research-card" data-index="4">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-2">Sistema de medios para bacteriología médica (2021)</h3>
+                    <p><strong>Enfoque:</strong> Mixto. Diagnóstico pedagógico, diseño instruccional y prueba.</p>
+                    <p><strong>Temática principal:</strong> Materiales híbridos.</p>
+                    <p><strong>Temáticas secundarias:</strong> Teoría-práctica, diseño pedagógico.</p>
+                    <a href="https://revcmpinar.sld.cu/index.php/publicaciones/article/view/5185" target="_blank" class="text-blue-500 hover:underline">Enlace: Ver artículo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparativa" class="scrolly-section bg-white shadow-lg rounded-xl mx-4 my-8 p-8">
+            <h2 class="text-4xl font-bold mb-8 text-blue-600">Comparativa Gráfica</h2>
+            <div class="w-full max-w-2xl">
+                <h3 class="text-2xl font-semibold mb-4">Enfoque más frecuente:</h3>
+                <div class="bar-chart-container">
+                    <div class="bar" style="height: 0%;" data-height="80%"><span>2</span></div>
+                    <div class="bar" style="height: 0%;" data-height="80%"><span>2</span></div>
+                    <div class="bar" style="height: 0%;" data-height="40%"><span>1</span></div>
+                </div>
+                <div class="flex justify-around w-full max-w-600px mt-2">
+                    <span class="bar-label">Cuantitativo</span>
+                    <span class="bar-label">Mixto</span>
+                    <span class="bar-label">Cualitativo</span>
+                </div>
+
+                <h3 class="text-2xl font-semibold mt-12 mb-4">Temáticas principales:</h3>
+                <ul class="list-disc list-inside text-lg text-left max-w-xl mx-auto">
+                    <li class="mb-2">TIC</li>
+                    <li class="mb-2">Educación inmersiva</li>
+                    <li class="mb-2">Estrategias activas</li>
+                    <li class="mb-2">Entornos virtuales de aprendizaje (EVA)</li>
+                    <li>Diseño instruccional</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="hallazgos" class="scrolly-section bg-slate-50">
+            <h2 class="text-4xl font-bold mb-8 text-blue-600">Hallazgos Clave</h2>
+            <ul class="list-disc list-inside text-xl text-left max-w-2xl mx-auto">
+                <li class="mb-3">Las TIC y entornos inmersivos mejoran la comprensión.</li>
+                <li class="mb-3">Las estrategias activas fomentan el pensamiento crítico.</li>
+                <li class="mb-3">La evaluación formativa permite seguimiento personalizado.</li>
+                <li>El docente se redefine como facilitador digital.</li>
+            </ul>
+        </section>
+
+        <section id="tematicas" class="scrolly-section bg-white shadow-lg rounded-xl mx-4 my-8 p-8">
+            <h2 class="text-4xl font-bold mb-8 text-blue-600">Temáticas Prospectivas</h2>
+            <div class="overflow-x-auto w-full max-w-3xl">
+                <table class="min-w-full bg-white border border-slate-200 rounded-lg shadow-sm">
+                    <thead>
+                        <tr class="bg-blue-100 text-blue-800 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">Categoría</th>
+                            <th class="py-3 px-6 text-left">Ejemplos de prospectiva</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-700 text-sm font-light">
+                        <tr class="border-b border-slate-200 hover:bg-slate-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap font-medium">Tecnología educativa</td>
+                            <td class="py-3 px-6 text-left">Realidad aumentada, IA adaptativa, laboratorios virtuales interactivos</td>
+                        </tr>
+                        <tr class="border-b border-slate-200 hover:bg-slate-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap font-medium">Didáctica avanzada</td>
+                            <td class="py-3 px-6 text-left">Simulaciones, juegos serios, evaluación de pensamiento crítico</td>
+                        </tr>
+                        <tr class="border-b border-slate-200 hover:bg-slate-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap font-medium">Evaluación del aprendizaje</td>
+                            <td class="py-3 px-6 text-left">Analítica, biomarcadores de atención, modelos predictivos</td>
+                        </tr>
+                        <tr class="border-b border-slate-200 hover:bg-slate-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap font-medium">Inclusión y accesibilidad</td>
+                            <td class="py-3 px-6 text-left">EVA accesibles, diseño para diversidad cognitiva y sensorial</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap font-medium">Contexto y aplicación</td>
+                            <td class="py-3 px-6 text-left">Microbiología en regiones rurales, interdisciplina con salud pública</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="conclusion" class="scrolly-section bg-slate-50">
+            <h2 class="text-4xl font-bold mb-8 text-blue-600">Conclusión</h2>
+            <p class="text-2xl md:text-3xl font-semibold italic text-slate-800 mb-12 max-w-2xl">
+                "La innovación educativa en microbiología no es una opción, es una necesidad científica y social."
+            </p>
+            <p class="text-xl md:text-2xl font-bold text-blue-700">
+                ¿Qué línea de investigación te gustaría liderar tú?
+            </p>
+        </section>
+
+        <section id="referencias" class="scrolly-section bg-white shadow-lg rounded-xl mx-4 my-8 p-8 text-left items-start">
+            <h2 class="text-4xl font-bold mb-8 text-blue-600 text-center w-full">Referencias (APA 7)</h2>
+            <ul class="list-none text-lg space-y-4 max-w-3xl mx-auto">
+                <li>
+                    Xue, F., Guo, R., Yao, S., Wang, L., & Ma, K. L. (2023). <span class="italic">From Artifacts to Outcomes: Comparison of HMD VR, Desktop, and Slides Lectures for Food Microbiology Laboratory Instruction.</span> Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems. <a href="https://doi.org/10.1145/3544548.3580913" target="_blank" class="text-blue-500 hover:underline">https://doi.org/10.1145/3544548.3580913</a>
+                </li>
+                <li>
+                    Nina Nina, D. G., & Vásquez Michel, A. M. (2023). <span class="italic">Optimización del aprendizaje en Microbiología: evaluación del impacto de las Tecnologías de la Información y Comunicación.</span> Revista Educación, 48(2), 1–20. <a href="https://doi.org/10.15517/revedu.v48i2.58294" target="_blank" class="text-blue-500 hover:underline">https://doi.org/10.15517/revedu.v48i2.58294</a>
+                </li>
+                <li>
+                    Gaines Acuña, S., & Céspedes Guevara, N. Y. (2023). <span class="italic">Estrategias de Enseñanza Aplicadas al Aprendizaje de la Microbiología.</span> Ciencia Latina Revista Científica Multidisciplinar, 8(5), 8207–8227. <a href="https://doi.org/10.37811/cl_rcm.v8i5.14235" target="_blank" class="text-blue-500 hover:underline">https://doi.org/10.37811/cl_rcm.v8i5.14235</a>
+                </li>
+                <li>
+                    Cedeño García, M. E., & Zabala Villarreal, W. A. (2022). <span class="italic">Entorno virtual de aprendizaje para la enseñanza de microbiología de los alimentos.</span> Ciencias Sociales y Económicas, 8(2), 64–77. <a href="https://doi.org/10.18779/csye.v8i2.886" target="_blank" class="text-blue-500 hover:underline">https://doi.org/10.18779/csye.v8i2.886</a>
+                </li>
+                <li>
+                    Hernández, Y., Díaz, L. M., Medina, R. E., Martínez, H. L., & Cruz, E. (2021). <span class="italic">Sistema integrado de medios de enseñanza para el aprendizaje de la Bacteriología Médica.</span> Revista de Ciencias Médicas de Pinar del Río, 25(6). <a href="https://revcmpinar.sld.cu/index.php/publicaciones/article/view/5185" target="_blank" class="text-blue-500 hover:underline">https://revcmpinar.sld.cu/index.php/publicaciones/article/view/5185</a>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
+    <script>
+        // Función para manejar la visibilidad de las secciones al hacer scroll
+        function handleScrollAnimations() {
+            const sections = document.querySelectorAll('.scrolly-section');
+            const windowHeight = window.innerHeight;
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                // Si la sección está al menos 50% visible en la ventana
+                if (sectionTop < windowHeight * 0.75 && sectionTop > -section.offsetHeight * 0.5) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+
+            // Animación específica para las tarjetas de investigación
+            const researchCards = document.querySelectorAll('.research-card');
+            const investigacionesSection = document.getElementById('investigaciones');
+            if (investigacionesSection.classList.contains('active')) {
+                researchCards.forEach((card, index) => {
+                    // Retraso para que aparezcan escalonadamente
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150); // 150ms de retraso entre cada tarjeta
+                });
+            } else {
+                researchCards.forEach(card => {
+                    card.classList.remove('visible');
+                });
+            }
+
+            // Animación específica para las barras de la comparativa gráfica
+            const comparativaSection = document.getElementById('comparativa');
+            if (comparativaSection.classList.contains('active')) {
+                const bars = document.querySelectorAll('#comparativa .bar');
+                bars.forEach(bar => {
+                    const targetHeight = bar.getAttribute('data-height');
+                    bar.style.height = targetHeight;
+                });
+            } else {
+                const bars = document.querySelectorAll('#comparativa .bar');
+                bars.forEach(bar => {
+                    bar.style.height = '0%'; // Reset height when not active
+                });
+            }
+        }
+
+        // Se ejecuta la función de animación al cargar la página y al hacer scroll
+        window.addEventListener('load', handleScrollAnimations);
+        window.addEventListener('scroll', handleScrollAnimations);
+    </script>
+</body>
+</html>
